@@ -1,10 +1,10 @@
 import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
-import workSpace1 from "../../../assets/images/work-space-1.jpg?w=640&h=360&fit=cover&format=webp&as=img";
-import workSpace2 from "../../../assets/images/work-space-2.jpg?w=640&h=360&fit=cover&format=webp&as=img";
-import workSpace3 from "../../../assets/images/work-space-3.jpg?w=640&h=360&fit=cover&format=webp&as=img";
-import workSpace4 from "../../../assets/images/work-space-4.jpg?w=640&h=360&fit=cover&format=webp&as=img";
-import workSpace5 from "../../../assets/images/work-space-5.jpg?w=640&h=360&fit=cover&format=webp&as=img";
+import workSpace1 from "../../../assets/images/work-space-1.webp?w=640&h=360&fit=cover&format=webp&as=img";
+import workSpace2 from "../../../assets/images/work-space-2.webp?w=640&h=360&fit=cover&format=webp&as=img";
+import workSpace3 from "../../../assets/images/work-space-3.webp?w=640&h=360&fit=cover&format=webp&as=img";
+import workSpace4 from "../../../assets/images/work-space-4.webp?w=640&h=360&fit=cover&format=webp&as=img";
+import workSpace5 from "../../../assets/images/work-space-5.webp?w=640&h=360&fit=cover&format=webp&as=img";
 
 const workSpaceImages = [
   workSpace1,
