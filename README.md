@@ -97,8 +97,6 @@ You can deploy the output to any static host (e.g. S3 + CloudFront, Netlify, Ver
 │           ├── Footer.tsx
 │           ├── illustrations/   # Section SVG illustrations
 │           ├── ui/              # Shared UI (Radix-based, etc.)
-│           └── figma/
-│               └── ImageWithFallback.tsx
 ```
 
 ---
