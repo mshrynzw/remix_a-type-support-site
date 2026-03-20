@@ -28,8 +28,16 @@ export function AboutSection() {
             <div className="mt-8 md:mt-10 flex md:justify-end">
               <a
                 href="#contact"
-                className="inline-flex items-center gap-3 rounded-full bg-pink-500 px-8 py-3 font-bold text-white hover:bg-pink-600 transition-colors"
+                className="relative inline-flex items-center gap-3 rounded-full px-8 py-3 font-bold text-white backdrop-blur-md border border-white/50 bg-gradient-to-r from-pink-500/90 to-fuchsia-400/75 shadow-2xl shadow-pink-500/60 overflow-hidden transition-colors hover:from-pink-500/100 hover:to-fuchsia-400/85 hover:shadow-pink-600/70"
               >
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-br from-white/40 via-white/15 to-transparent opacity-60"
+                />
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-px rounded-full ring-1 ring-white/60"
+                />
                 事業所紹介
                 <span aria-hidden="true">→</span>
               </a>
