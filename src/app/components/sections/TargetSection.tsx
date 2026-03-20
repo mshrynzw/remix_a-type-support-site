@@ -6,7 +6,10 @@ import { WorkDesireIllustration } from "../illustrations/WorkDesireIllustration"
 
 export function TargetSection() {
   return (
-    <section id="target" className="py-16 bg-pink-50 relative overflow-hidden">
+    <section
+      id="target"
+      className="py-16 bg-pink-50 opacity-75 relative overflow-hidden"
+    >
       <div className="absolute inset-0 opacity-5"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">

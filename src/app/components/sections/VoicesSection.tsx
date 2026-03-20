@@ -48,7 +48,7 @@ export function VoicesSection() {
   }, []);
 
   return (
-    <section id="voices" className="py-16 bg-white relative overflow-hidden">
+    <section id="voices" className="py-16 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-pink-100/35 to-transparent" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">

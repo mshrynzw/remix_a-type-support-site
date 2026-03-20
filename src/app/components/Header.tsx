@@ -1,6 +1,6 @@
+import { MenuIcon } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router";
-import { MenuIcon } from "lucide-react";
 import logo from "../../assets/images/logo.webp?h=40&format=webp&as=img";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "./ui/sheet";
 
@@ -16,7 +16,7 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white">
+    <header>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link to="/">

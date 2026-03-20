@@ -1,6 +1,6 @@
 export function AboutSection() {
   return (
-    <section id="about" className="py-16 bg-white">
+    <section id="about" className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
           <p className="text-xs tracking-[0.15em] text-gray-500 mb-2">
@@ -48,4 +48,3 @@ export function AboutSection() {
     </section>
   );
 }
-

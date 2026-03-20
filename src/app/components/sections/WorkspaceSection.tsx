@@ -59,7 +59,7 @@ export function WorkspaceSection() {
 
   return (
     <>
-      <section className="pb-16 bg-white">
+      <section className="pb-16">
         <div className="relative overflow-hidden">
           <div className="overflow-hidden w-[125vw] ml-[-12.5vw]">
             <div className="flex" ref={carouselTrackRef}>
