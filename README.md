@@ -9,7 +9,7 @@ Front end for a **single-page landing site** introducing a Japanese **Type A** (
 ## Tech stack
 
 | Area | Choice |
-|------|--------|
+| ---- | ------ |
 | Build & dev server | [Vite](https://vitejs.dev/) 6 |
 | UI library | [React](https://react.dev/) 18 |
 | Routing | [React Router](https://reactrouter.com/) 7 (`createBrowserRouter`) |
@@ -73,16 +73,34 @@ or:
 npm run build
 ```
 
-You can deploy the output to any static host (e.g. S3 + CloudFront, Netlify, Vercel static hosting). As an **SPA**, you may need server configuration to **fallback all routes to `index.html`** when you add client-side routes beyond the root (today the app is centered on `/`).
+### SSG-like prerender for `/` (top page)
+
+This project now prerenders the **top page (`/`) at build time** to improve first paint on static hosting (including **Cloudflare Pages**):
+
+- `build` runs `vite build`
+- then `postbuild` runs `tsx scripts/prerender-index.tsx`
+- the script renders the `/` route to HTML and injects it into `dist/index.html` (`#root`)
+- on the client, `src/main.tsx` uses `hydrateRoot` when prerendered markup exists
+
+This means:
+
+- `dist/index.html` includes real HTML content for `/` (instead of an empty root container)
+- hydration keeps SPA behavior after the initial load
+- routes other than `/` are still handled as client-side routing
+
+You can deploy `dist/` to static hosts such as Cloudflare Pages, S3 + CloudFront, Netlify, or Vercel static hosting.  
+If you later add non-root client routes, configure **fallback to `index.html`** on your host.
 
 ---
 
 ## Project layout (key files)
 
-```
+```text
 ├── index.html              # Entry HTML (document title: Japanese facility site title)
 ├── vite.config.ts          # Vite: React, Tailwind, `@` → `src` alias
 ├── package.json
+├── scripts/
+│   └── prerender-index.tsx # Build-time prerender for `/`
 ├── src/
 │   ├── main.tsx            # React root mount, loads `index.css`
 │   ├── styles/
@@ -110,9 +128,10 @@ Routes are defined in the `createBrowserRouter` array in `src/app/routes.tsx`. T
 ## npm scripts
 
 | Script | Description |
-|--------|-------------|
+| ------ | ----------- |
 | `dev` | Start dev server (`vite`) |
 | `build` | Production build (`vite build`) |
+| `postbuild` | Prerender `/` into `dist/index.html` (`tsx scripts/prerender-index.tsx`) |
 
 ---
 
