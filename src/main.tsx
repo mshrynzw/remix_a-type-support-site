@@ -1,7 +1,15 @@
 
-  import { createRoot } from "react-dom/client";
-  import App from "./app/App.tsx";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import App from "./app/App";
   import "./styles/index.css";
 
-  createRoot(document.getElementById("root")!).render(<App />);
+const rootEl = document.getElementById("root");
+if (rootEl) {
+  // If prerender (SSG-like) output exists, hydrate to preserve the initial HTML.
+  if (rootEl.hasChildNodes()) {
+    hydrateRoot(rootEl, <App />);
+  } else {
+    createRoot(rootEl).render(<App />);
+  }
+}
   
