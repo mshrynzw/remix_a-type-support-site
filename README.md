@@ -10,7 +10,7 @@ Front end for a **single-page landing site** introducing a Japanese **Type A** (
 
 | Area | Choice |
 | ---- | ------ |
-| Build & dev server | [Vite](https://vitejs.dev/) 6 |
+| Build & dev server | [Vite](https://vitejs.dev/) 6, [vite-imagetools](https://github.com/JonasKruckenberg/imagetools) (build-time image transforms) |
 | UI library | [React](https://react.dev/) 18 |
 | Routing | [React Router](https://reactrouter.com/) 7 (`createBrowserRouter`) |
 | Styling | [Tailwind CSS](https://tailwindcss.com/) 4 (`@tailwindcss/vite`) |
@@ -78,7 +78,7 @@ npm run build
 This project now prerenders the **top page (`/`) at build time** to improve first paint on static hosting (including **Cloudflare Pages**):
 
 - `build` runs `vite build`
-- then `postbuild` runs `tsx scripts/prerender-index.tsx`
+- then `postbuild` runs `vite-node --config vite.config.ts scripts/prerender-index.tsx` (so `vite-imagetools` and other Vite transforms apply during prerender)
 - the script renders the `/` route to HTML and injects it into `dist/index.html` (`#root`)
 - on the client, `src/main.tsx` uses `hydrateRoot` when prerendered markup exists
 
@@ -131,7 +131,7 @@ Routes are defined in the `createBrowserRouter` array in `src/app/routes.tsx`. T
 | ------ | ----------- |
 | `dev` | Start dev server (`vite`) |
 | `build` | Production build (`vite build`) |
-| `postbuild` | Prerender `/` into `dist/index.html` (`tsx scripts/prerender-index.tsx`) |
+| `postbuild` | Prerender `/` into `dist/index.html` (`vite-node --config vite.config.ts scripts/prerender-index.tsx`) |
 
 ---
 

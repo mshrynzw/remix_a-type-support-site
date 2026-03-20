@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Montserrat:wght@400;700&display=swap");
+
+:root {
+  --font-sans-jp: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic",
+    "Meiryo", sans-serif;
+  --font-sans-en: "Montserrat", var(--font-sans-jp);
+}
+
+html,
+body {
+  font-family: var(--font-sans-jp);
+}
+
+.font-jp {
+  font-family: var(--font-sans-jp);
+}
+
+.font-en {
+  font-family: var(--font-sans-en);
+}

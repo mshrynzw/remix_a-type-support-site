@@ -7,9 +7,49 @@ import { createMemoryRouter, RouterProvider } from "react-router";
 import { Root } from "../src/app/components/Root";
 import { HomePage } from "../src/app/components/HomePage";
 
+function rewriteImagetoolsUrls(
+  html: string,
+  builtImageFilesInRenderOrder: string[],
+) {
+  // vite-imagetools in dev/SSR mode can emit src="/@imagetools/..." or absolute URLs to the same path.
+  let i = 0;
+  return html.replace(/src="[^"]*@imagetools[^"]*"/g, (match) => {
+    const file = builtImageFilesInRenderOrder[i++];
+    if (!file) {
+      return match;
+    }
+    return `src="/assets/${file}"`;
+  });
+}
+
 async function main() {
   const distIndexPath = path.resolve(process.cwd(), "dist", "index.html");
+  const distAssetsDir = path.resolve(process.cwd(), "dist", "assets");
   const distIndexHtml = await fs.readFile(distIndexPath, "utf-8");
+
+  const assets = await fs.readdir(distAssetsDir);
+  const logoBuiltFile = assets.find(
+    (name) => name.startsWith("logo") && name.endsWith(".webp"),
+  );
+  const keyVisualBuiltFile = assets.find(
+    (name) => name.startsWith("key-visual") && name.endsWith(".webp"),
+  );
+  const workSpaceBuiltFiles = assets
+    .filter(
+      (name) => name.startsWith("work-space-") && name.endsWith(".webp"),
+    )
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+  if (!logoBuiltFile || !keyVisualBuiltFile || workSpaceBuiltFiles.length < 5) {
+    throw new Error(
+      "Expected logo/key-visual/work-space image assets in dist/assets after vite build.",
+    );
+  }
+  const builtImageFilesInRenderOrder = [
+    logoBuiltFile,
+    keyVisualBuiltFile,
+    ...workSpaceBuiltFiles,
+    ...workSpaceBuiltFiles,
+  ];
 
   // Prerender only "/" to speed up the initial load.
   const router = createMemoryRouter(
@@ -23,7 +63,12 @@ async function main() {
     { initialEntries: ["/"] },
   );
 
-  const prerendered = renderToString(<RouterProvider router={router} />);
+  let prerendered = renderToString(<RouterProvider router={router} />);
+
+  prerendered = rewriteImagetoolsUrls(
+    prerendered,
+    builtImageFilesInRenderOrder,
+  );
 
   // Vite SPA template has an empty root container. Replace it with prerendered HTML.
   const nextHtml = distIndexHtml.replace(
@@ -32,7 +77,9 @@ async function main() {
   );
 
   if (nextHtml === distIndexHtml) {
-    throw new Error("Failed to find the empty <div id=\"root\"></div> in dist/index.html.");
+    throw new Error(
+      "Failed to find the empty <div id=\"root\"></div> in dist/index.html.",
+    );
   }
 
   await fs.writeFile(distIndexPath, nextHtml, "utf-8");
@@ -45,4 +92,3 @@ main().catch((err) => {
   console.error(err);
   process.exitCode = 1;
 });
-
