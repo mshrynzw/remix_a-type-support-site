@@ -1,38 +1,38 @@
-import multiCreativeDesigner from "../../../assets/images/multi-creative-designer.webp";
-import pcOperator from "../../../assets/images/pc-operator.webp";
-import webDesignEngineer from "../../../assets/images/web-design-engineer.webp";
-import webProgrammer from "../../../assets/images/web-programmer.webp";
-import websiteDevelopmentOperationSupport from "../../../assets/images/website-development-operation-support.webp";
+import multiCreativeDesigner from "../../../assets/images/multi-creative-designer.webp?w=640&h=360&fit=cover&format=webp&as=img";
+import pcOperator from "../../../assets/images/pc-operator.webp?w=640&h=360&fit=cover&format=webp&as=img";
+import webDesignEngineer from "../../../assets/images/web-design-engineer.webp?w=640&h=360&fit=cover&format=webp&as=img";
+import webProgrammer from "../../../assets/images/web-programmer.webp?w=640&h=360&fit=cover&format=webp&as=img";
+import websiteDevelopmentOperationSupport from "../../../assets/images/website-development-operation-support.webp?w=640&h=360&fit=cover&format=webp&as=img";
 
 const businessCards = [
   {
     title: "WEBプログラマー",
     description:
       "プログラミング言語を使用して、個人に合った開発案件をおこなっていただきます。",
-    imageUrl: webProgrammer,
+    image: webProgrammer,
   },
   {
     title: "WEBデザインエンジニア",
     description: "HTMLやCSSを用いて、WEB制作業務をおこなっていただきます。",
-    imageUrl: webDesignEngineer,
+    image: webDesignEngineer,
   },
   {
     title: "PCオペレーター",
     description:
       "文章の作成、帳票や図面の作成など、簡単におこなえるデータ入力をおこなっていただきます。",
-    imageUrl: pcOperator,
+    image: pcOperator,
   },
   {
     title: "WEB制作・運用サポート",
     description:
       "WEBサイトやスマホアプリ、業務用システムの保守・改善をおこなっていただきます。",
-    imageUrl: websiteDevelopmentOperationSupport,
+    image: websiteDevelopmentOperationSupport,
   },
   {
     title: "マルチクリエイティブデザイナー",
     description:
       "紙・WEB・動画など、様々な媒体を使ってデザインをおこなっていただきます。",
-    imageUrl: multiCreativeDesigner,
+    image: multiCreativeDesigner,
   },
 ];
 
@@ -63,8 +63,10 @@ export function BusinessSection() {
 
               <div className="relative z-10">
                 <img
-                  src={card.imageUrl}
+                  src={card.image.src}
                   alt={card.title}
+                  width={card.image.w}
+                  height={card.image.h}
                   className="h-44 w-full object-cover"
                   loading="lazy"
                 />
