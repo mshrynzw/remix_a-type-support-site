@@ -1,4 +1,5 @@
 ﻿import { AboutSection } from "./sections/AboutSection";
+import { BusinessSection } from "./sections/BusinessSection";
 import { ContactSection } from "./sections/ContactSection";
 import { HeroSection } from "./sections/HeroSection";
 import { ScheduleSection } from "./sections/ScheduleSection";
@@ -12,6 +13,7 @@ export function HomePage() {
       <HeroSection />
       <AboutSection />
       <WorkspaceSection />
+      <BusinessSection />
       <ScheduleSection />
       <TargetSection />
       <VoicesSection />

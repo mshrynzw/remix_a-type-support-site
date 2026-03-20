@@ -58,28 +58,30 @@ export function WorkspaceSection() {
   }, []);
 
   return (
-    <section className="pb-16 bg-white">
-      <div className="relative overflow-hidden">
-        <div className="overflow-hidden w-[125vw] ml-[-12.5vw]">
-          <div className="flex" ref={carouselTrackRef}>
-            {[...workSpaceImages, ...workSpaceImages].map((image, index) => (
-              <div
-                key={index}
-                className="min-w-0 shrink-0 grow-0 basis-1/4 px-2"
-              >
-                <img
-                  src={image.src}
-                  width={image.w}
-                  height={image.h}
-                  alt={`施設内の様子 ${(index % workSpaceImages.length) + 1}`}
-                  className="h-44 w-full object-cover rounded-md"
-                  decoding="async"
-                />
-              </div>
-            ))}
+    <>
+      <section className="pb-16 bg-white">
+        <div className="relative overflow-hidden">
+          <div className="overflow-hidden w-[125vw] ml-[-12.5vw]">
+            <div className="flex" ref={carouselTrackRef}>
+              {[...workSpaceImages, ...workSpaceImages].map((image, index) => (
+                <div
+                  key={index}
+                  className="min-w-0 shrink-0 grow-0 basis-1/4 px-2"
+                >
+                  <img
+                    src={image.src}
+                    width={image.w}
+                    height={image.h}
+                    alt={`施設内の様子 ${(index % workSpaceImages.length) + 1}`}
+                    className="h-44 w-full object-cover rounded-md shadow-lg shadow-pink-300/20"
+                    decoding="async"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
