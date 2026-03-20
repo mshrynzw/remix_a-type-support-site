@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+import { useEffect, useRef } from "react";
 import multiCreativeDesigner from "../../../assets/images/multi-creative-designer.webp?w=640&h=360&fit=cover&format=webp&as=img";
 import pcOperator from "../../../assets/images/pc-operator.webp?w=640&h=360&fit=cover&format=webp&as=img";
 import webDesignEngineer from "../../../assets/images/web-design-engineer.webp?w=640&h=360&fit=cover&format=webp&as=img";
@@ -37,6 +39,50 @@ const businessCards = [
 ];
 
 export function BusinessSection() {
+  const cardsGridRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const gridEl = cardsGridRef.current;
+    if (!gridEl) return;
+
+    const prefersReducedMotion = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const cards = Array.from(gridEl.querySelectorAll<HTMLElement>("article"));
+    if (cards.length === 0) return;
+
+    if (prefersReducedMotion) {
+      gsap.set(cards, { opacity: 1 });
+      return;
+    }
+
+    // 先に隠して、スクロールで入ってきたタイミングで stagger fade-in
+    gsap.set(cards, { opacity: 0 });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry?.isIntersecting) return;
+
+        observer.disconnect();
+        gsap.to(cards, {
+          opacity: 1,
+          duration: 0.5,
+          ease: "power4.in",
+          stagger: 0.25,
+        });
+      },
+      { threshold: 0.2 },
+    );
+
+    observer.observe(gridEl);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <section className="py-16 bg-pink-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,11 +97,11 @@ export function BusinessSection() {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-6">
+        <div ref={cardsGridRef} className="flex flex-wrap justify-center gap-6">
           {businessCards.map((card) => (
             <article
               key={card.title}
-              className="relative bg-pink-100/20 rounded-2xl border border-white/50 shadow-xl shadow-pink-300/30 overflow-hidden basis-full sm:basis-[calc(50%-1.5rem)] lg:basis-[calc(33.333%-1rem)] lg:max-w-[360px] flex-shrink-0 backdrop-blur-md transition-transform duration-300 hover:-translate-y-1"
+              className="relative opacity-0 bg-pink-100/20 rounded-2xl border border-white/50 shadow-xl shadow-pink-300/30 overflow-hidden basis-full sm:basis-[calc(50%-1.5rem)] lg:basis-[calc(33.333%-1rem)] lg:max-w-[360px] flex-shrink-0 backdrop-blur-md transition-transform duration-300 hover:-translate-y-1"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-pink-200/25 opacity-95" />
               <div className="absolute -top-10 -left-10 h-32 w-32 bg-pink-300/60 blur-2xl opacity-45" />

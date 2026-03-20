@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+import { useEffect, useRef } from "react";
 import {
   EndIcon,
   LunchIcon,
@@ -6,6 +8,51 @@ import {
 } from "../illustrations/ScheduleIcons";
 
 export function ScheduleSection() {
+  const cardsWrapRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const wrapEl = cardsWrapRef.current;
+    if (!wrapEl) return;
+
+    const prefersReducedMotion = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const cards = Array.from(
+      wrapEl.querySelectorAll<HTMLElement>(":scope > div"),
+    );
+    if (cards.length === 0) return;
+
+    if (prefersReducedMotion) {
+      gsap.set(cards, { opacity: 1, x: 0 });
+      return;
+    }
+
+    // スクロール到達までは一旦非表示（ちらつき防止）
+    gsap.set(cards, { opacity: 0, x: `calc(calc(1/2 * 100%) * -1)` });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry?.isIntersecting) return;
+
+        observer.disconnect();
+
+        gsap.to(cards, {
+          opacity: 1,
+          x: 0,
+          duration: 0.5,
+          ease: "power4.in",
+          stagger: 0.25,
+        });
+      },
+      { threshold: 0.2 },
+    );
+
+    observer.observe(wrapEl);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="schedule" className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,8 +60,8 @@ export function ScheduleSection() {
           一日のスケジュール
         </h2>
         <div className="max-w-4xl mx-auto">
-          <div className="space-y-6">
-            <div className="relative rounded-2xl border border-white/50 bg-white/10 p-6 backdrop-blur-md shadow-xl shadow-pink-300/30 overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+          <div className="space-y-6" ref={cardsWrapRef}>
+            <div className="relative opacity-0 -translate-x-1/2 rounded-2xl border border-white/50 bg-white/10 p-6 backdrop-blur-md shadow-xl shadow-pink-300/30 overflow-hidden transition-transform duration-300 hover:-translate-y-1">
               <div className="absolute inset-0 bg-gradient-to-br from-white/35 to-pink-200/15 opacity-95" />
               <div className="absolute -top-10 -left-10 h-32 w-32 bg-pink-300/45 blur-2xl opacity-40" />
               <div className="absolute -bottom-10 -right-10 h-32 w-32 bg-fuchsia-300/30 blur-2xl opacity-30" />
@@ -37,7 +84,7 @@ export function ScheduleSection() {
               </div>
             </div>
 
-            <div className="relative rounded-2xl border border-white/50 bg-white/10 p-6 backdrop-blur-md shadow-xl shadow-pink-300/30 overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+            <div className="relative opacity-0 -translate-x-16 rounded-2xl border border-white/50 bg-white/10 p-6 backdrop-blur-md shadow-xl shadow-pink-300/30 overflow-hidden transition-transform duration-300 hover:-translate-y-1">
               <div className="absolute inset-0 bg-gradient-to-br from-white/35 to-pink-200/15 opacity-95" />
               <div className="absolute -top-10 -left-10 h-32 w-32 bg-pink-300/45 blur-2xl opacity-40" />
               <div className="absolute -bottom-10 -right-10 h-32 w-32 bg-fuchsia-300/30 blur-2xl opacity-30" />
@@ -60,7 +107,7 @@ export function ScheduleSection() {
               </div>
             </div>
 
-            <div className="relative rounded-2xl border border-white/50 bg-white/10 p-6 backdrop-blur-md shadow-xl shadow-pink-300/30 overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+            <div className="relative opacity-0 -translate-x-16 rounded-2xl border border-white/50 bg-white/10 p-6 backdrop-blur-md shadow-xl shadow-pink-300/30 overflow-hidden transition-transform duration-300 hover:-translate-y-1">
               <div className="absolute inset-0 bg-gradient-to-br from-white/35 to-pink-200/15 opacity-95" />
               <div className="absolute -top-10 -left-10 h-32 w-32 bg-pink-300/45 blur-2xl opacity-40" />
               <div className="absolute -bottom-10 -right-10 h-32 w-32 bg-fuchsia-300/30 blur-2xl opacity-30" />
@@ -83,7 +130,7 @@ export function ScheduleSection() {
               </div>
             </div>
 
-            <div className="relative rounded-2xl border border-white/50 bg-white/10 p-6 backdrop-blur-md shadow-xl shadow-pink-300/30 overflow-hidden transition-transform duration-300 hover:-translate-y-1">
+            <div className="relative opacity-0 -translate-x-16 rounded-2xl border border-white/50 bg-white/10 p-6 backdrop-blur-md shadow-xl shadow-pink-300/30 overflow-hidden transition-transform duration-300 hover:-translate-y-1">
               <div className="absolute inset-0 bg-gradient-to-br from-white/35 to-pink-200/15 opacity-95" />
               <div className="absolute -top-10 -left-10 h-32 w-32 bg-pink-300/45 blur-2xl opacity-40" />
               <div className="absolute -bottom-10 -right-10 h-32 w-32 bg-fuchsia-300/30 blur-2xl opacity-30" />
@@ -111,4 +158,3 @@ export function ScheduleSection() {
     </section>
   );
 }
-

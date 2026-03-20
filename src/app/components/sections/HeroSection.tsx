@@ -1,10 +1,36 @@
+import { gsap } from "gsap";
+import { useEffect, useRef } from "react";
 import keyVisual from "../../../assets/images/key-visual.webp?w=840&format=webp&as=img";
 
 export function HeroSection() {
+  const heroCardRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!heroCardRef.current) return;
+
+    const prefersReducedMotion = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReducedMotion) return;
+
+    gsap.fromTo(
+      heroCardRef.current,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 1.5,
+        ease: "power4.in",
+      },
+    );
+  }, []);
+
   return (
     <section className="py-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-2xl border border-white/50 bg-white/10 p-6 md:p-8 backdrop-blur-md shadow-xl shadow-pink-300/30 overflow-hidden">
+        <div
+          ref={heroCardRef}
+          className="relative rounded-2xl border border-white/50 bg-white/10 p-6 md:p-8 backdrop-blur-md shadow-xl shadow-pink-300/30 overflow-hidden"
+        >
           <div className="absolute inset-0 bg-gradient-to-br from-pink-200/35 to-purple-100/20" />
           <div className="absolute -top-16 -left-16 h-48 w-48 bg-pink-300/35 blur-3xl opacity-50" />
           <div className="absolute -bottom-16 -right-16 h-48 w-48 bg-fuchsia-300/25 blur-3xl opacity-35" />
@@ -34,4 +60,3 @@ export function HeroSection() {
     </section>
   );
 }
-

@@ -1,9 +1,52 @@
+import { gsap } from "gsap";
+import { useEffect, useRef } from "react";
+
 import { PersonMiddleFemale } from "../illustrations/PersonMiddleFemale";
 import { PersonOlderMale } from "../illustrations/PersonOlderMale";
 import { PersonYoungFemale } from "../illustrations/PersonYoungFemale";
 import { PersonYoungMale } from "../illustrations/PersonYoungMale";
 
 export function VoicesSection() {
+  const gridRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const gridEl = gridRef.current;
+    if (!gridEl) return;
+    // ":scope" の解釈差で拾えていないケースがあるため、直下要素をカードとして確定させる
+    const cards = Array.from(gridEl.children).filter(
+      (el): el is HTMLElement => el instanceof HTMLElement,
+    );
+    if (cards.length === 0) return;
+    const prefersReducedMotion = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReducedMotion) {
+      gsap.set(cards, { opacity: 1 });
+      return;
+    }
+    // ちらつき防止
+    gsap.set(cards, { opacity: 0 });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry?.isIntersecting) return;
+        observer.disconnect();
+        gsap.fromTo(
+          cards,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            duration: 1,
+            ease: "bounce",
+            stagger: 0.25,
+          },
+        );
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(gridEl);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="voices" className="py-16 bg-white relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-pink-100/35 to-transparent" />
@@ -11,7 +54,7 @@ export function VoicesSection() {
         <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
           メンバーさん（ご利用者）の声
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="relative rounded-2xl border border-white/50 bg-pink-100/20 p-8 backdrop-blur-md shadow-xl shadow-pink-300/35 overflow-hidden transition-transform duration-300 hover:-translate-y-1">
             <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-pink-200/35 opacity-95" />
             <div className="absolute -top-10 -left-10 h-32 w-32 bg-pink-300/60 blur-2xl opacity-55" />
