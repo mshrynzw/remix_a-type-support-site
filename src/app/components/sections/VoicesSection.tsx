@@ -1,10 +1,10 @@
 import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
 
-import { PersonMiddleFemale } from "../illustrations/PersonMiddleFemale";
-import { PersonOlderMale } from "../illustrations/PersonOlderMale";
-import { PersonYoungFemale } from "../illustrations/PersonYoungFemale";
-import { PersonYoungMale } from "../illustrations/PersonYoungMale";
+import personVoice00 from "../../../assets/images/persons/person_voice_00.webp";
+import personVoice01 from "../../../assets/images/persons/person_voice_01.webp";
+import personVoice02 from "../../../assets/images/persons/person_voice_02.webp";
+import personVoice03 from "../../../assets/images/persons/person_voice_03.webp";
 
 export function VoicesSection() {
   const gridRef = useRef<HTMLDivElement | null>(null);
@@ -64,11 +64,18 @@ export function VoicesSection() {
             <div className="relative z-10">
               <div className="flex items-start gap-6 mb-4">
                 <div className="flex-shrink-0">
-                  <PersonYoungMale />
+                  <img
+                    src={personVoice00}
+                    alt="30代・女性の利用者"
+                    width={100}
+                    height={100}
+                    className="h-[100px] w-[100px] rounded-md object-cover border border-pink-200/60 shadow-sm"
+                    decoding="async"
+                  />
                 </div>
                 <div>
                   <p className="text-pink-500 font-bold text-sm mb-1">
-                    20代・男性
+                    30代・女性
                   </p>
                   <p className="text-gray-600 text-sm">利用歴：1年</p>
                 </div>
@@ -91,13 +98,20 @@ export function VoicesSection() {
             <div className="relative z-10">
               <div className="flex items-start gap-6 mb-4">
                 <div className="flex-shrink-0">
-                  <PersonMiddleFemale />
+                  <img
+                    src={personVoice01}
+                    alt="10代・男性の利用者"
+                    width={100}
+                    height={100}
+                    className="h-[100px] w-[100px] rounded-md object-cover border border-pink-200/60 shadow-sm"
+                    decoding="async"
+                  />
                 </div>
                 <div>
                   <p className="text-pink-500 font-bold text-sm mb-1">
-                    40代・女性
+                    10代・男性
                   </p>
-                  <p className="text-gray-600 text-sm">利用歴：2年</p>
+                  <p className="text-gray-600 text-sm">利用歴：6ヶ月</p>
                 </div>
               </div>
 
@@ -118,7 +132,14 @@ export function VoicesSection() {
             <div className="relative z-10">
               <div className="flex items-start gap-6 mb-4">
                 <div className="flex-shrink-0">
-                  <PersonOlderMale />
+                  <img
+                    src={personVoice02}
+                    alt="50代・男性の利用者"
+                    width={100}
+                    height={100}
+                    className="h-[100px] w-[100px] rounded-md object-cover border border-pink-200/60 shadow-sm"
+                    decoding="async"
+                  />
                 </div>
                 <div>
                   <p className="text-pink-500 font-bold text-sm mb-1">
@@ -145,13 +166,20 @@ export function VoicesSection() {
             <div className="relative z-10">
               <div className="flex items-start gap-6 mb-4">
                 <div className="flex-shrink-0">
-                  <PersonYoungFemale />
+                  <img
+                    src={personVoice03}
+                    alt="20代・女性・男性の利用者"
+                    width={100}
+                    height={100}
+                    className="h-[100px] w-[100px] rounded-md object-cover border border-pink-200/60 shadow-sm"
+                    decoding="async"
+                  />
                 </div>
                 <div>
                   <p className="text-pink-500 font-bold text-sm mb-1">
-                    30代・女性
+                    20代・女性・男性
                   </p>
-                  <p className="text-gray-600 text-sm">利用歴：6ヶ月</p>
+                  <p className="text-gray-600 text-sm">利用歴：2年</p>
                 </div>
               </div>
 
