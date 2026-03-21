@@ -58,14 +58,32 @@ async function main() {
     return file;
   });
 
+  const personVoiceBuiltFilesInOrder = [
+    "person_voice_00",
+    "person_voice_01",
+    "person_voice_02",
+    "person_voice_03",
+  ].map((prefix) => {
+    const file = assets.find(
+      (name) => name.startsWith(prefix) && name.endsWith(".webp"),
+    );
+    if (!file) {
+      throw new Error(
+        `Expected voices image asset in dist/assets: ${prefix}*.webp`,
+      );
+    }
+    return file;
+  });
+
   if (
     !logoBuiltFile ||
     !keyVisualBuiltFile ||
     workSpaceBuiltFiles.length < 5 ||
-    businessBuiltFilesInOrder.length < 5
+    businessBuiltFilesInOrder.length < 5 ||
+    personVoiceBuiltFilesInOrder.length < 4
   ) {
     throw new Error(
-      "Expected logo/key-visual/work-space/business image assets in dist/assets after vite build.",
+      "Expected logo/key-visual/work-space/business/voices image assets in dist/assets after vite build.",
     );
   }
   const builtImageFilesInRenderOrder = [
@@ -74,6 +92,7 @@ async function main() {
     ...workSpaceBuiltFiles,
     ...workSpaceBuiltFiles,
     ...businessBuiltFilesInOrder,
+    ...personVoiceBuiltFilesInOrder,
   ];
 
   // Prerender only "/" to speed up the initial load.

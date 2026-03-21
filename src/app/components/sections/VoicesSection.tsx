@@ -1,10 +1,10 @@
 import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
 
-import personVoice00 from "../../../assets/images/persons/person_voice_00.webp";
-import personVoice01 from "../../../assets/images/persons/person_voice_01.webp";
-import personVoice02 from "../../../assets/images/persons/person_voice_02.webp";
-import personVoice03 from "../../../assets/images/persons/person_voice_03.webp";
+import personVoice00 from "../../../assets/images/persons/person_voice_00.webp?w=100&h=100&fit=cover&format=webp&as=img";
+import personVoice01 from "../../../assets/images/persons/person_voice_01.webp?w=100&h=100&fit=cover&format=webp&as=img";
+import personVoice02 from "../../../assets/images/persons/person_voice_02.webp?w=100&h=100&fit=cover&format=webp&as=img";
+import personVoice03 from "../../../assets/images/persons/person_voice_03.webp?w=100&h=100&fit=cover&format=webp&as=img";
 
 export function VoicesSection() {
   const gridRef = useRef<HTMLDivElement | null>(null);
@@ -65,10 +65,10 @@ export function VoicesSection() {
               <div className="flex items-start gap-6 mb-4">
                 <div className="flex-shrink-0">
                   <img
-                    src={personVoice00}
+                    src={personVoice00.src}
                     alt="30代・女性の利用者"
-                    width={100}
-                    height={100}
+                    width={personVoice00.w}
+                    height={personVoice00.h}
                     className="h-[100px] w-[100px] rounded-md object-cover border border-pink-200/60 shadow-sm"
                     decoding="async"
                   />
@@ -99,10 +99,10 @@ export function VoicesSection() {
               <div className="flex items-start gap-6 mb-4">
                 <div className="flex-shrink-0">
                   <img
-                    src={personVoice01}
+                    src={personVoice01.src}
                     alt="10代・男性の利用者"
-                    width={100}
-                    height={100}
+                    width={personVoice01.w}
+                    height={personVoice01.h}
                     className="h-[100px] w-[100px] rounded-md object-cover border border-pink-200/60 shadow-sm"
                     decoding="async"
                   />
@@ -133,10 +133,10 @@ export function VoicesSection() {
               <div className="flex items-start gap-6 mb-4">
                 <div className="flex-shrink-0">
                   <img
-                    src={personVoice02}
+                    src={personVoice02.src}
                     alt="50代・男性の利用者"
-                    width={100}
-                    height={100}
+                    width={personVoice02.w}
+                    height={personVoice02.h}
                     className="h-[100px] w-[100px] rounded-md object-cover border border-pink-200/60 shadow-sm"
                     decoding="async"
                   />
@@ -167,10 +167,10 @@ export function VoicesSection() {
               <div className="flex items-start gap-6 mb-4">
                 <div className="flex-shrink-0">
                   <img
-                    src={personVoice03}
+                    src={personVoice03.src}
                     alt="20代・女性・男性の利用者"
-                    width={100}
-                    height={100}
+                    width={personVoice03.w}
+                    height={personVoice03.h}
                     className="h-[100px] w-[100px] rounded-md object-cover border border-pink-200/60 shadow-sm"
                     decoding="async"
                   />
