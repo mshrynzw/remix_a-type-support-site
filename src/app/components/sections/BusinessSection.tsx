@@ -10,30 +10,31 @@ const businessCards = [
   {
     title: "WEBプログラマー",
     description:
-      "プログラミング言語を使用して、個人に合った開発案件をおこなっていただきます。",
+      "JavaScriptやTypeScript、Rust、Python、PHP、Java、Ruby、C#などのプログラミング言語を使用して、個人に合った開発案件をおこなっていただきます。",
     image: webProgrammer,
   },
   {
     title: "WEBデザインエンジニア",
-    description: "HTMLやCSSを用いて、WEB制作業務をおこなっていただきます。",
+    description:
+      "HTMLやCSS、Tailwind CSS、React、Next.js、Vue.js、Nuxt.js、Svelte、Astro、SolidJSなどのフロントエンド技術を用いて、WEB制作業務をおこなっていただきます。",
     image: webDesignEngineer,
   },
   {
     title: "PCオペレーター",
     description:
-      "文章の作成、帳票や図面の作成など、簡単におこなえるデータ入力をおこなっていただきます。",
+      "ドキュメントの作成、帳票や図面の作成など、簡単におこなえるデータ入力業務をおこなっていただきます。",
     image: pcOperator,
   },
   {
     title: "WEB制作・運用サポート",
     description:
-      "WEBサイトやスマホアプリ、業務用システムの保守・改善をおこなっていただきます。",
+      "WEBサイトやスマホアプリ、業務用システムの保守・改善・運用をおこなっていただきます。",
     image: websiteDevelopmentOperationSupport,
   },
   {
     title: "マルチクリエイティブデザイナー",
     description:
-      "紙・WEB・動画など、様々な媒体を使ってデザインをおこなっていただきます。",
+      "イラスト・動画・3Dモデリングなど、様々な媒体を使ってデザイン業務をおこなっていただきます。",
     image: multiCreativeDesigner,
   },
 ];
@@ -92,7 +93,7 @@ export function BusinessSection() {
           </p>
           <h2 className="text-3xl font-bold text-gray-900">Our Business</h2>
           <p className="mt-4 text-sm text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            あるあるあとは、あなたの得意を活かした仕事を通じて自信を育てる場所です。ITに興味がある方も、
+            あるあるあとは、あなたの特徴を活かした仕事を通じて自信を育てる場所です。最先端のIT技術に興味がある方も、
             まずはできることから始められます。
           </p>
         </div>

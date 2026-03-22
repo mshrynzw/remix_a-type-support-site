@@ -48,7 +48,7 @@ export function HeroSection() {
             </div>
             <div className="relative z-10 text-center md:text-left">
               <h1 className="text-xl font-medium tracking-wide text-gray-700">
-                寄り添いと共感、思いやりの心を大切に
+                共感、寄り添い、思いやりの心を大切に
               </h1>
               <p className="mt-4 text-xs tracking-[0.2em] text-gray-500">
                 ALALA SUPPORT

@@ -17,12 +17,12 @@ export function AboutSection() {
             <h3 className="text-4xl leading-tight text-gray-600 place-self-center">
               サポートを通じて
               <br />
-              IT技術の可能性を
+              最先端のIT技術の可能性を
             </h3>
           </div>
           <div>
             <p className="text-gray-600 leading-relaxed">
-              あるあるあサポートがご提供するのは、はたらく自信や未来を叶えるタスクを通所しながら実践的に学べる空間です。
+              あるあるあサポートがご提供するのは、就業するための自信や未来を叶えるタスクを通所しながら実践的に学べる空間です。
               障害との向き合い方や仕事の上手な進め方、自分の適正に合った職業の探し方など、最先端の専門的なスタッフが未来を叶えるお手伝いをします。
             </p>
             <div className="mt-8 md:mt-10 flex md:justify-end">

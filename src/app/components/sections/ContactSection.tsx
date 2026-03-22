@@ -76,7 +76,7 @@ export function ContactSection() {
             <div className="pt-4">
               <p className="text-sm text-gray-600 mb-1">所在地</p>
               <p className="text-gray-700">〒000-0000</p>
-              <p className="text-gray-700">東京都○○区○○ 1-2-3</p>
+              <p className="text-gray-700">北海道札幌市中央区○○ 1-2-3</p>
             </div>
           </div>
         </div>

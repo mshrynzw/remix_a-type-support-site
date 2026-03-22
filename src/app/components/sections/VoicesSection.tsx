@@ -78,6 +78,7 @@ export function VoicesSection() {
                     30代・女性
                   </p>
                   <p className="text-gray-600 text-sm">利用歴：1年</p>
+                  <p className="text-gray-600 text-sm">WEBプログラマー</p>
                 </div>
               </div>
 
@@ -112,6 +113,9 @@ export function VoicesSection() {
                     10代・男性
                   </p>
                   <p className="text-gray-600 text-sm">利用歴：6ヶ月</p>
+                  <p className="text-gray-600 text-sm">
+                    マルチクリエイティブデザイナー
+                  </p>
                 </div>
               </div>
 
@@ -146,6 +150,7 @@ export function VoicesSection() {
                     50代・男性
                   </p>
                   <p className="text-gray-600 text-sm">利用歴：3年</p>
+                  <p className="text-gray-600 text-sm">PCオペレーター</p>
                 </div>
               </div>
 
@@ -180,12 +185,13 @@ export function VoicesSection() {
                     20代・女性・男性
                   </p>
                   <p className="text-gray-600 text-sm">利用歴：2年</p>
+                  <p className="text-gray-600 text-sm">WEBデザインエンジニア</p>
                 </div>
               </div>
 
               <p className="text-gray-700 leading-relaxed">
                 「最初は緊張していましたが、明るい雰囲気の職場で
-                すぐに馴染むことができました。自分のできることから始められるので、
+                すぐに馴染むことができました。」「自分のできることから始められるので、
                 無理なくステップアップしていけます。」
               </p>
             </div>

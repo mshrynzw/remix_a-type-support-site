@@ -24,7 +24,7 @@ export function Footer() {
             <p className="text-gray-300 text-sm">
               〒000-0000
               <br />
-              東京都○○区○○ 1-2-3
+              北海道札幌市中央区○○ 1-2-3
             </p>
           </div>
         </div>
